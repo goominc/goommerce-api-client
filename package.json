@@ -2,8 +2,9 @@
   "name": "goommerce-api-client",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "babel ./src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/goominc/goommerce-api-client/issues"
   },
-  "homepage": "https://github.com/goominc/goommerce-api-client#readme"
+  "homepage": "https://github.com/goominc/goommerce-api-client#readme",
+  "devDependencies": {
+    "babel": "^5.8.35"
+  }
 }

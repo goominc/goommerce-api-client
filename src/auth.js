@@ -1,3 +1,5 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import { request } from './util';
 
 export function login(auth, { email, password }) {
