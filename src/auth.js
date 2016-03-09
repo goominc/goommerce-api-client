@@ -11,8 +11,8 @@ export function logout(auth) {
   return request(auth, 'delete', '/api/v1/login');
 }
 
-export function signup(auth, body) {
-  return request(auth, 'post', '/api/v1/users', body);
+export function signup(auth, params) {
+  return request(auth, 'post', '/api/v1/users', params);
 }
 
 export function forgotPassword(auth, { email, resetBaseUrl }) {
