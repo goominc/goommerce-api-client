@@ -1,37 +1,54 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-function getAjaxData(auth, method, url, body) {
-  const headers = {};
-  if (auth) {
-    headers.Authorization = auth.bearer ? `Bearer ${auth.bearer}` : '';
-  }
-  const res = {
-    url,
-    method,
-    headers,
-    processData: false,
-    contentType: 'application/json',
-  };
-  if (body) {
-    res.data = JSON.stringify(body);
-  }
-  return res;
-}
-
-export function request(auth, method, url, body) {
-  return $.ajax(getAjaxData(auth, method, url, body)).fail(
-    (jqXHR, textStatus, errorThrown) => {
-      let error = jqXHR.responseJSON;
-      if (!error) {
-        if (errorThrown) {
-          error = { message: errorThrown };
-        } else if (jqXHR.status === 0) {
-          error = { message: 'Network Error' };
-        } else {
-          error = { message: 'Unknown Error' };
-        }
-      }
-      return Promise.reject(error);
+if (global.fetch) {
+  exports.request = (auth, method, url, body) => {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+    if (auth) {
+      headers.Authorization = auth.bearer ? `Bearer ${auth.bearer}` : '';
     }
-  );
+    return fetch(url, {
+      method,
+      headers,
+      body: JSON.stringify(body),
+    }).then((response) => response.json());
+  };
+} else {
+  function getAjaxData(auth, method, url, body) {
+    const headers = {};
+    if (auth) {
+      headers.Authorization = auth.bearer ? `Bearer ${auth.bearer}` : '';
+    }
+    const res = {
+      url,
+      method,
+      headers,
+      processData: false,
+      contentType: 'application/json',
+    };
+    if (body) {
+      res.data = JSON.stringify(body);
+    }
+    return res;
+  }
+
+  exports.request = (auth, method, url, body) => {
+    return $.ajax(getAjaxData(auth, method, url, body)).fail(
+      (jqXHR, textStatus, errorThrown) => {
+        let error = jqXHR.responseJSON;
+        if (!error) {
+          if (errorThrown) {
+            error = { message: errorThrown };
+          } else if (jqXHR.status === 0) {
+            error = { message: 'Network Error' };
+          } else {
+            error = { message: 'Unknown Error' };
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+  };
 }
