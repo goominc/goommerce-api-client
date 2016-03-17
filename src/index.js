@@ -7,3 +7,7 @@ export {
   authApi,
   orderApi,
 };
+
+export function config({ apiRoot }) {
+  require('./config').apiRoot = apiRoot;
+}

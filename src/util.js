@@ -1,5 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
+const config = require('./config');
+
 if (global.fetch) {
   exports.request = (auth, method, url, body) => {
     const headers = {
@@ -9,7 +11,7 @@ if (global.fetch) {
     if (auth) {
       headers.Authorization = auth.bearer ? `Bearer ${auth.bearer}` : '';
     }
-    return fetch(url, {
+    return fetch(config.apiRoot + url, {
       method,
       headers,
       body: JSON.stringify(body),
@@ -22,7 +24,7 @@ if (global.fetch) {
       headers.Authorization = auth.bearer ? `Bearer ${auth.bearer}` : '';
     }
     const res = {
-      url,
+      url: config.apiRoot + url,
       method,
       headers,
       processData: false,
