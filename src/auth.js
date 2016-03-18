@@ -2,15 +2,16 @@
 
 import { request } from './util';
 
-export function login(auth, { email, password }) {
+export function login(auth, { email, password, onesignal }) {
   return request(auth, 'post', '/api/v1/login', {
     email,
     password,
+    onesignal,
   });
 }
 
-export function logout(auth) {
-  return request(auth, 'delete', '/api/v1/login');
+export function logout(auth, { onesignal }) {
+  return request(auth, 'delete', '/api/v1/login', { onesignal });
 }
 
 export function signup(auth, params) {
