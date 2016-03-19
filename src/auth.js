@@ -10,6 +10,10 @@ export function login(auth, { email, password, onesignal }) {
   });
 }
 
+export function whoami(auth) {
+  return request(auth, 'get', '/api/v1/login');
+}
+
 export function logout(auth, { onesignal }) {
   return request(auth, 'delete', '/api/v1/login', { onesignal });
 }
