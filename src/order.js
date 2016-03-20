@@ -10,3 +10,7 @@ export function loadBrandOrders(auth, { brandId, start, end }) {
   const query = $.param({ start, end });
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders?${query}`);
 }
+
+export function loadBrandPendingOrders(auth, { brandId }) {
+  return request(auth, 'get', `/api/v1/brands/${brandId}/orders/pending`);
+}
