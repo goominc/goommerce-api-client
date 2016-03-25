@@ -19,5 +19,8 @@
   "homepage": "https://github.com/goominc/goommerce-api-client#readme",
   "devDependencies": {
     "babel": "^5.8.35"
+  },
+  "dependencies": {
+    "qs": "^6.1.0"
   }
 }
