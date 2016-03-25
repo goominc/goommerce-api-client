@@ -15,7 +15,13 @@ if (global.fetch) {
       method,
       headers,
       body: JSON.stringify(body),
-    }).then((response) => response.json());
+    }).then((response) => {
+      const contentType = response.headers.get('content-type');
+      if(contentType && contentType.indexOf('application/json') !== -1) {
+        return response.json().then((json) => response.ok ? json : Promise.reject(json));
+      }
+      return response.text().then((message) => Promise.reject({ message }));
+    });
   };
 } else {
   function getAjaxData(auth, method, url, body) {
