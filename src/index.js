@@ -2,10 +2,12 @@
 
 import * as authApi from './auth';
 import * as orderApi from './order';
+import * as productApi from './product';
 
 export {
   authApi,
   orderApi,
+  productApi,
 };
 
 export function config({ apiRoot }) {
