@@ -7,13 +7,13 @@ export function loadBrandOrderStats(auth, { brandId }) {
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders/stats`);
 }
 
-export function loadBrandOrders(auth, { brandId, start, end }) {
-  const query = qs.stringify({ start, end });
-  return request(auth, 'get', `/api/v1/brands/${brandId}/orders?${query}`);
+export function loadBrandOrder(auth, { brandId, orderId }) {
+  return request(auth, 'get', `/api/v1/brands/${brandId}/orders/${orderId}`);
 }
 
-export function loadBrandPendingOrders(auth, { brandId }) {
-  return request(auth, 'get', `/api/v1/brands/${brandId}/orders/pending`);
+export function loadBrandOrders(auth, { brandId, offset, limit }) {
+  const query = qs.stringify({ offset, limit });
+  return request(auth, 'get', `/api/v1/brands/${brandId}/orders?${query}`);
 }
 
 export function updateStock(auth, { orderProductId, count }) {
