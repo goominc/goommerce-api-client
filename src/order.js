@@ -16,6 +16,10 @@ export function loadBrandOrders(auth, { brandId, offset, limit }) {
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders?${query}`);
 }
 
-export function updateStock(auth, { orderProductId, count }) {
-  return request(auth, 'put', `/api/v1/order_products/${orderProductId}/stock`, { count });
+export function updateBrandOrderStatus(auth, { brandId, orderId, from, to }) {
+  return request(auth, 'put', `/api/v1/brands/${brandId}/orders/${orderId}/status`, { from, to });
+}
+
+export function createOrderProductLog(auth, { orderProductId, ...params }) {
+  return request(auth, 'post', `/api/v1/order_products/${orderProductId}/logs`, params);
 }
