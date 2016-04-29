@@ -23,3 +23,7 @@ export function updateBrandOrderStatus(auth, { brandId, orderId, from, to }) {
 export function createOrderProductLog(auth, { orderProductId, ...params }) {
   return request(auth, 'post', `/api/v1/order_products/${orderProductId}/logs`, params);
 }
+
+export function updateOrderProductStock(auth, { orderProductId, quantity }) {
+  return request(auth, 'put', `/api/v1/order_products/${orderProductId}/stock`, { quantity });
+}
