@@ -11,9 +11,9 @@ export function loadBrandOrder(auth, { brandId, orderId }) {
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders/${orderId}`);
 }
 
-export function loadBrandOrders(auth, { brandId, offset, limit }) {
+export function loadBrandOrders(auth, { brandId, status, offset, limit }) {
   const query = qs.stringify({ offset, limit });
-  return request(auth, 'get', `/api/v1/brands/${brandId}/orders?${query}`);
+  return request(auth, 'get', `/api/v1/brands/${brandId}/orders/${status}?${query}`);
 }
 
 export function updateBrandOrderStatus(auth, { brandId, orderId, from, to }) {
