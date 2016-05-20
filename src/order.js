@@ -28,8 +28,8 @@ export function createOrderProductLog(auth, { orderProductId, ...params }) {
   return request(auth, 'post', `/api/v1/order_products/${orderProductId}/logs`, params);
 }
 
-export function updateOrderProductStock(auth, { orderProductId, quantity, reason }) {
-  return request(auth, 'put', `/api/v1/order_products/${orderProductId}/stock`, { quantity, reason });
+export function updateOrderProductStock(auth, { orderProductId, quantity, reason, data }) {
+  return request(auth, 'put', `/api/v1/order_products/${orderProductId}/stock`, { quantity, reason, data });
 }
 
 export function deleteOrderProductStock(auth, { orderProductId }) {
