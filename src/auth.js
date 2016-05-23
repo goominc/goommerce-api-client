@@ -29,3 +29,7 @@ export function forgotPassword(auth, { email, resetBaseUrl }) {
 export function resetPassword(auth, { access_token, password }) {
   return request(auth, 'put', '/api/v1/reset', { access_token, password });
 }
+
+export function updateAgreements(auth, { buyer, seller, personalInfomation }) {
+  return request(auth, 'put', '/api/v1/users/self/agreements', { buyer, seller, personalInfomation });
+}
