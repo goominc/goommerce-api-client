@@ -3,10 +3,6 @@
 import { request } from './util';
 import qs from 'qs';
 
-export function loadBrandOrderStats(auth, { brandId }) {
-  return request(auth, 'get', `/api/v1/brands/${brandId}/orders/stats`);
-}
-
 export function loadBrandOrder(auth, { brandId, orderId }) {
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders/${orderId}`);
 }
