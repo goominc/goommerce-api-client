@@ -20,7 +20,10 @@ if (global.fetch) {
       if(contentType && contentType.indexOf('application/json') !== -1) {
         return response.json().then((json) => response.ok ? json : Promise.reject(json));
       }
-      return response.text().then((message) => Promise.reject({ message }));
+      return response.text().then((message) => Promise.reject({
+        status: response.status,
+        message,
+      }));
     });
   };
 } else {
