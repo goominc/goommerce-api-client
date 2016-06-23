@@ -7,8 +7,8 @@ export function loadBrandOrder(auth, { brandId, orderId }) {
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders/${orderId}`);
 }
 
-export function loadBrandOrders(auth, { brandId, status, offset, limit }) {
-  const query = qs.stringify({ offset, limit });
+export function loadBrandOrders(auth, { brandId, status, offset, limit, start, end }) {
+  const query = qs.stringify({ offset, limit, start, end });
   return request(auth, 'get', `/api/v1/brands/${brandId}/orders/${status}?${query}`);
 }
 
